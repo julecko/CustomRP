@@ -204,6 +204,8 @@
     <ResourceCompile Include="CustomRP.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
     <None Include="res\CustomRP.rc2" />
   </ItemGroup>
   <ItemGroup>

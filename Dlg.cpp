@@ -26,6 +26,7 @@ Dlg::Dlg(CWnd* pParent /*=nullptr*/)
 void Dlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_TAB_MAIN, m_TabMain);
 }
 
 BEGIN_MESSAGE_MAP(Dlg, CDialogEx)
@@ -51,6 +52,10 @@ BOOL Dlg::OnInitDialog()
 	::SetWindowLong(this->m_hWnd, GWL_STYLE, style);
 	::SetWindowPos(this->m_hWnd, nullptr, 0, 0, 0, 0,
 		SWP_NOZORDER | SWP_NOMOVE | SWP_NOSIZE | SWP_FRAMECHANGED);
+
+	m_TabMain.InsertItem(0, _T("General"));
+	m_TabMain.InsertItem(1, _T("Advanced"));
+	m_TabMain.InsertItem(2, _T("About"));
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }

@@ -3,7 +3,7 @@
 //
 
 #pragma once
-
+#include <afxtabctrl.h>
 
 // Dlg dialog
 class Dlg : public CDialogEx
@@ -24,6 +24,7 @@ public:
 // Implementation
 protected:
 	HICON m_hIcon;
+	CTabCtrl m_TabMain;
 
 	// Generated message map functions
 	virtual BOOL OnInitDialog();
