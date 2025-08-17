@@ -1,0 +1,37 @@
+# Visual Studio generated files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vcxproj.user
+*.aps
+*.ncb
+*.opensdf
+*.sdf
+*.ipch
+*.pdb
+*.obj
+*.idb
+*.ilk
+*.log
+*.tlog/
+*.lastbuildstate
+*.sbr
+
+# Build folders
+x64/
+Debug/
+Release/
+bin/
+Build/
+Binaries/
+
+# MFC / Resource files that are generated
+*.pch
+*.res
+*.rc2
+
+# Visual Studio temporary files
+*.tmp
+*.cache
+*.vs/
