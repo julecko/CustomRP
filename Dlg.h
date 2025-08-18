@@ -5,6 +5,10 @@
 #pragma once
 #include <afxtabctrl.h>
 
+#include "TabGeneral.h"
+#include "TabAdvanced.h"
+#include "TabAbout.h"
+
 // Dlg dialog
 class Dlg : public CDialogEx
 {
@@ -24,12 +28,17 @@ public:
 // Implementation
 protected:
 	HICON m_hIcon;
+
 	CTabCtrl m_TabMain;
+	TabGeneral   m_tabGeneral;
+	TabAdvanced  m_tabAdvanced;
+	TabAbout     m_tabAbout;
 
 	// Generated message map functions
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
+	afx_msg void OnTabSelChange(NMHDR* pNMHDR, LRESULT* pResult);
 	DECLARE_MESSAGE_MAP()
 };

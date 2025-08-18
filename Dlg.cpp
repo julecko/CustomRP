@@ -33,6 +33,7 @@ BEGIN_MESSAGE_MAP(Dlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_WM_SYSCOMMAND()
+	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB_MAIN, &Dlg::OnTabSelChange)
 END_MESSAGE_MAP()
 
 
@@ -56,6 +57,23 @@ BOOL Dlg::OnInitDialog()
 	m_TabMain.InsertItem(0, _T("General"));
 	m_TabMain.InsertItem(1, _T("Advanced"));
 	m_TabMain.InsertItem(2, _T("About"));
+
+	m_tabGeneral.Create(IDD_TAB_GENERAL, &m_TabMain);
+	m_tabAdvanced.Create(IDD_TAB_ADVANCED, &m_TabMain);
+	m_tabAbout.Create(IDD_TAB_ABOUT, &m_TabMain);
+
+	CRect rc;
+	m_TabMain.GetClientRect(&rc);
+	m_TabMain.AdjustRect(FALSE, &rc);
+
+	m_tabGeneral.MoveWindow(&rc);
+	m_tabAdvanced.MoveWindow(&rc);
+	m_tabAbout.MoveWindow(&rc);
+
+	m_tabGeneral.ShowWindow(SW_SHOW);
+	m_tabAdvanced.ShowWindow(SW_HIDE);
+	m_tabAbout.ShowWindow(SW_HIDE);
+
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -105,4 +123,15 @@ void Dlg::OnSysCommand(UINT nID, LPARAM lParam)
 	case SC_MAXIMIZE: ShowWindow(SW_MAXIMIZE); break;
 	default: CDialogEx::OnSysCommand(nID, lParam);
 	}
+}
+
+void Dlg::OnTabSelChange(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	int sel = m_TabMain.GetCurSel();
+
+	m_tabGeneral.ShowWindow(sel == 0 ? SW_SHOW : SW_HIDE);
+	m_tabAdvanced.ShowWindow(sel == 1 ? SW_SHOW : SW_HIDE);
+	m_tabAbout.ShowWindow(sel == 2 ? SW_SHOW : SW_HIDE);
+
+	*pResult = 0;
 }
