@@ -1,6 +1,7 @@
 #include "pch/pch.h"
 #include "TrayIcon.h"
 #include "app/CustomRP.h"
+#include "ui/Dlg.h"
 
 BEGIN_MESSAGE_MAP(CTrayWnd, CWnd)
     ON_MESSAGE(WM_TRAYICON, &CTrayWnd::OnTrayNotify)
@@ -47,5 +48,14 @@ void CTrayWnd::OnTrayExit()
 
 void CTrayWnd::OnTraySettings()
 {
-    AfxMessageBox(_T("Settings clicked! (implement later)"));
+    static Dlg* pDlg = nullptr;
+
+    if (!pDlg || !::IsWindow(pDlg->GetSafeHwnd()))
+    {
+        pDlg = new Dlg(this);        // parent = tray window
+        pDlg->Create(IDD_CUSTOMRP_DIALOG, this);
+    }
+
+    pDlg->ShowWindow(SW_SHOW);
+    pDlg->SetForegroundWindow();
 }

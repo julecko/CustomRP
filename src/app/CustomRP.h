@@ -5,11 +5,12 @@
 #endif
 
 #include "res/resource.h"
+#include "rpc/DiscordPresence.h"
+#include <thread>
+#include <memory>
 
-// Forward declare
 class CTrayWnd;
 
-// CCustomRPApp
 class CCustomRPApp : public CWinApp
 {
 public:
@@ -18,13 +19,14 @@ public:
     virtual BOOL InitInstance();
     virtual int ExitInstance();
 
-    afx_msg void OnAppExit();
-    afx_msg void OnAppSettings();
 
     DECLARE_MESSAGE_MAP()
 
 private:
     CTrayWnd* m_pTrayWnd; // hidden window for tray icon
+
+    std::unique_ptr<MyDiscordPresence> m_discord;
+    std::thread m_discordThread;
 };
 
 extern CCustomRPApp theApp;

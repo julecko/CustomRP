@@ -25,6 +25,18 @@ BOOL CCustomRPApp::InitInstance()
         return FALSE;
 
     m_pMainWnd = m_pTrayWnd; // app lifetime = tray lifetime
+
+    m_discord = std::make_unique<MyDiscordPresence>();
+    if (m_discord->Initialize(NULL))
+    {
+        m_discord->UpdatePresence("In Main Menu", "Playing CustomRP");
+
+        m_discordThread = std::thread([this]() {
+            if (m_discord)
+                m_discord->RunCallbacks();
+            });
+    }
+
     return TRUE;
 }
 
@@ -36,6 +48,16 @@ int CCustomRPApp::ExitInstance()
         delete m_pTrayWnd;
         m_pTrayWnd = nullptr;
     }
+
+    if(m_discord)
+    {
+        m_discord->Shutdown();
+    }
+
+    if (m_discordThread.joinable())
+        m_discordThread.join();
+
+    m_discord.reset();
 
     return CWinApp::ExitInstance();
 }

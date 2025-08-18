@@ -93,10 +93,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch/pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)src;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>discord_game_sdk.dll.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -108,6 +110,11 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent>
+      <Command>echo "Copying discord_game_sdk.dll into result folder"
+copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
+</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -184,7 +191,25 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\achievement_manager.h" />
+    <ClInclude Include="include\activity_manager.h" />
+    <ClInclude Include="include\application_manager.h" />
+    <ClInclude Include="include\core.h" />
+    <ClInclude Include="include\discord.h" />
+    <ClInclude Include="include\event.h" />
+    <ClInclude Include="include\ffi.h" />
+    <ClInclude Include="include\image_manager.h" />
+    <ClInclude Include="include\lobby_manager.h" />
+    <ClInclude Include="include\network_manager.h" />
+    <ClInclude Include="include\overlay_manager.h" />
+    <ClInclude Include="include\relationship_manager.h" />
+    <ClInclude Include="include\storage_manager.h" />
+    <ClInclude Include="include\store_manager.h" />
+    <ClInclude Include="include\types.h" />
+    <ClInclude Include="include\user_manager.h" />
+    <ClInclude Include="include\voice_manager.h" />
     <ClInclude Include="src\app\CustomRP.h" />
+    <ClInclude Include="src\rpc\DiscordPresence.h" />
     <ClInclude Include="src\tray\TrayIcon.h" />
     <ClInclude Include="src\ui\Dlg.h" />
     <ClInclude Include="src\pch\framework.h" />
@@ -197,7 +222,22 @@
     <ClInclude Include="src\util\Logger.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\achievement_manager.cpp" />
+    <ClCompile Include="include\activity_manager.cpp" />
+    <ClCompile Include="include\application_manager.cpp" />
+    <ClCompile Include="include\core.cpp" />
+    <ClCompile Include="include\image_manager.cpp" />
+    <ClCompile Include="include\lobby_manager.cpp" />
+    <ClCompile Include="include\network_manager.cpp" />
+    <ClCompile Include="include\overlay_manager.cpp" />
+    <ClCompile Include="include\relationship_manager.cpp" />
+    <ClCompile Include="include\storage_manager.cpp" />
+    <ClCompile Include="include\store_manager.cpp" />
+    <ClCompile Include="include\types.cpp" />
+    <ClCompile Include="include\user_manager.cpp" />
+    <ClCompile Include="include\voice_manager.cpp" />
     <ClCompile Include="src\app\CustomRP.cpp" />
+    <ClCompile Include="src\rpc\DiscordPresence.cpp" />
     <ClCompile Include="src\tray\TrayIcon.cpp" />
     <ClCompile Include="src\ui\Dlg.cpp" />
     <ClCompile Include="src\pch\pch.cpp">
