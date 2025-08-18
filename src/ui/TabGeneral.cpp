@@ -1,10 +1,10 @@
 // TabGeneral.cpp : implementation file
 //
 
-#include "pch.h"
-#include "CustomRP.h"
+#include "pch/pch.h"
+#include "app/CustomRP.h"
 #include "afxdialogex.h"
-#include "TabGeneral.h"
+#include "ui/TabGeneral.h"
 
 
 // TabGeneral dialog

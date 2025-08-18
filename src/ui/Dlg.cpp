@@ -2,10 +2,11 @@
 // Dlg.cpp : implementation file
 //
 
-#include "pch.h"
-#include "framework.h"
-#include "CustomRP.h"
-#include "Dlg.h"
+#include "pch/pch.h"
+#include "pch/framework.h"
+#include "app/CustomRP.h"
+#include "ui/Dlg.h"
+
 #include "afxdialogex.h"
 
 #ifdef _DEBUG

@@ -1,10 +1,10 @@
 // CustomRP.cpp : Defines the class behaviors for the application.
 //
 
-#include "pch.h"
-#include "framework.h"
-#include "CustomRP.h"
-#include "Dlg.h"
+#include "pch/pch.h"
+#include "pch/framework.h"
+#include "app/CustomRP.h"
+#include "ui/Dlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

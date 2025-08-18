@@ -15,56 +15,56 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CustomRP.h">
+    <ClInclude Include="src\app\CustomRP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Dlg.h">
+    <ClInclude Include="src\ui\Dlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="src\pch\framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="src\pch\targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
+    <ClInclude Include="res\Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="src\pch\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TabGeneral.h">
+    <ClInclude Include="src\ui\TabGeneral.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TabAdvanced.h">
+    <ClInclude Include="src\ui\TabAdvanced.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TabAbout.h">
+    <ClInclude Include="src\ui\TabAbout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CustomRP.cpp">
+    <ClCompile Include="src\app\CustomRP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Dlg.cpp">
+    <ClCompile Include="src\ui\Dlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="src\pch\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TabGeneral.cpp">
+    <ClCompile Include="src\ui\TabGeneral.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TabAdvanced.cpp">
+    <ClCompile Include="src\ui\TabAdvanced.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TabAbout.cpp">
+    <ClCompile Include="src\ui\TabAbout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="CustomRP.rc">
+    <ResourceCompile Include="res\CustomRP.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

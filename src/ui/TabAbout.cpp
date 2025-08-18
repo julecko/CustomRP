@@ -1,10 +1,10 @@
 // TabAbout.cpp : implementation file
 //
 
-#include "pch.h"
-#include "CustomRP.h"
+#include "pch/pch.h"
+#include "app/CustomRP.h"
 #include "afxdialogex.h"
-#include "TabAbout.h"
+#include "ui/TabAbout.h"
 
 
 // TabAbout dialog

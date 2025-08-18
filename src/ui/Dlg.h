@@ -5,9 +5,9 @@
 #pragma once
 #include <afxtabctrl.h>
 
-#include "TabGeneral.h"
-#include "TabAdvanced.h"
-#include "TabAbout.h"
+#include "ui/TabGeneral.h"
+#include "ui/TabAdvanced.h"
+#include "ui/TabAbout.h"
 
 // Dlg dialog
 class Dlg : public CDialogEx

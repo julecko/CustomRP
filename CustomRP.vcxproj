@@ -92,7 +92,8 @@
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>pch/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -183,31 +184,31 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CustomRP.h" />
-    <ClInclude Include="Dlg.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="pch.h" />
-    <ClInclude Include="Resource.h" />
-    <ClInclude Include="TabAbout.h" />
-    <ClInclude Include="TabAdvanced.h" />
-    <ClInclude Include="TabGeneral.h" />
-    <ClInclude Include="targetver.h" />
+    <ClInclude Include="src\app\CustomRP.h" />
+    <ClInclude Include="src\ui\Dlg.h" />
+    <ClInclude Include="src\pch\framework.h" />
+    <ClInclude Include="src\pch\pch.h" />
+    <ClInclude Include="res\Resource.h" />
+    <ClInclude Include="src\ui\TabAbout.h" />
+    <ClInclude Include="src\ui\TabAdvanced.h" />
+    <ClInclude Include="src\ui\TabGeneral.h" />
+    <ClInclude Include="src\pch\targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CustomRP.cpp" />
-    <ClCompile Include="Dlg.cpp" />
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="src\app\CustomRP.cpp" />
+    <ClCompile Include="src\ui\Dlg.cpp" />
+    <ClCompile Include="src\pch\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="TabAbout.cpp" />
-    <ClCompile Include="TabAdvanced.cpp" />
-    <ClCompile Include="TabGeneral.cpp" />
+    <ClCompile Include="src\ui\TabAbout.cpp" />
+    <ClCompile Include="src\ui\TabAdvanced.cpp" />
+    <ClCompile Include="src\ui\TabGeneral.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="CustomRP.rc" />
+    <ResourceCompile Include="res\CustomRP.rc" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />
