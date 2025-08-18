@@ -185,6 +185,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\app\CustomRP.h" />
+    <ClInclude Include="src\tray\TrayIcon.h" />
     <ClInclude Include="src\ui\Dlg.h" />
     <ClInclude Include="src\pch\framework.h" />
     <ClInclude Include="src\pch\pch.h" />
@@ -193,9 +194,11 @@
     <ClInclude Include="src\ui\TabAdvanced.h" />
     <ClInclude Include="src\ui\TabGeneral.h" />
     <ClInclude Include="src\pch\targetver.h" />
+    <ClInclude Include="src\util\Logger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\app\CustomRP.cpp" />
+    <ClCompile Include="src\tray\TrayIcon.cpp" />
     <ClCompile Include="src\ui\Dlg.cpp" />
     <ClCompile Include="src\pch\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -206,6 +209,7 @@
     <ClCompile Include="src\ui\TabAbout.cpp" />
     <ClCompile Include="src\ui\TabAdvanced.cpp" />
     <ClCompile Include="src\ui\TabGeneral.cpp" />
+    <ClCompile Include="src\util\Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\CustomRP.rc" />

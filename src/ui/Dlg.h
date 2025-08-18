@@ -33,7 +33,7 @@ protected:
 	TabGeneral   m_tabGeneral;
 	TabAdvanced  m_tabAdvanced;
 	TabAbout     m_tabAbout;
-
+	
 	// Generated message map functions
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();

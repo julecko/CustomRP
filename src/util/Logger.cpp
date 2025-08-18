@@ -1,3 +1,4 @@
+#include "pch/pch.h"
 #include "Logger.h"
 #include <chrono>
 #include <ctime>
@@ -16,7 +17,7 @@ static const char* levelNames[] = {
     "\x1b[31mERROR\x1b[0m"
 };
 
-Logger::Logger() : currentLevel(LogLevel::INFO), loggerFlags(LOG_FLAG_NONE) {}
+Logger::Logger() : currentLevel(LogLevel::LOG_INFO), loggerFlags(LOG_FLAG_NONE) {}
 
 Logger::~Logger() {
     if (logNormal.is_open()) logNormal.close();
@@ -45,7 +46,7 @@ void Logger::log(LogLevel level, const char* fmt, ...) {
     va_start(args, fmt);
     if (level >= currentLevel) {
         std::lock_guard<std::mutex> lock(mtx);
-        if (level == LogLevel::ERROR || level == LogLevel::WARN)
+        if (level == LogLevel::LOG_ERROR || level == LogLevel::LOG_WARN)
             logInternal(logError, level, fmt, args);
         else
             logInternal(logNormal, level, fmt, args);
@@ -77,7 +78,7 @@ void Logger::info(const char* fmt, ...) {
     va_list args;
     va_start(args, fmt);
     std::lock_guard<std::mutex> lock(mtx);
-    logInternal(logNormal, LogLevel::INFO, fmt, args);
+    logInternal(logNormal, LogLevel::LOG_INFO, fmt, args);
     va_end(args);
 }
 
@@ -85,7 +86,7 @@ void Logger::warn(const char* fmt, ...) {
     va_list args;
     va_start(args, fmt);
     std::lock_guard<std::mutex> lock(mtx);
-    logInternal(logError, LogLevel::WARN, fmt, args);
+    logInternal(logError, LogLevel::LOG_WARN, fmt, args);
     va_end(args);
 }
 
@@ -93,7 +94,7 @@ void Logger::error(const char* fmt, ...) {
     va_list args;
     va_start(args, fmt);
     std::lock_guard<std::mutex> lock(mtx);
-    logInternal(logError, LogLevel::ERROR, fmt, args);
+    logInternal(logError, LogLevel::LOG_ERROR, fmt, args);
     va_end(args);
 }
 

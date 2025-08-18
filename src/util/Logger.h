@@ -5,11 +5,11 @@
 #include <cstdarg>
 
 enum class LogLevel {
-    DEBUG_ULTRA,
-    DEBUG,
-    INFO,
-    WARN,
-    ERROR
+    LOG_DEBUG_ULTRA,
+    LOG_DEBUG,
+    LOG_INFO,
+    LOG_WARN,
+    LOG_ERROR
 };
 
 enum LoggerFlags {
@@ -24,7 +24,7 @@ public:
     ~Logger();
 
     void init(const std::string& normalFile, const std::string& errorFile,
-        LogLevel level = LogLevel::INFO, int flags = LOG_FLAG_NONE);
+        LogLevel level = LogLevel::LOG_INFO, int flags = LOG_FLAG_NONE);
 
     void setLevel(LogLevel level);
     void log(LogLevel level, const char* fmt, ...);

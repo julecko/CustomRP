@@ -1,32 +1,30 @@
-
-// CustomRP.h : main header file for the PROJECT_NAME application
-//
-
 #pragma once
 
 #ifndef __AFXWIN_H__
-	#error "include 'pch.h' before including this file for PCH"
+#error "include 'pch.h' before including this file for PCH"
 #endif
 
-#include "res/resource.h"		// main symbols
+#include "res/resource.h"
 
+// Forward declare
+class CTrayWnd;
 
-// CCustomRPApp:
-// See CustomRP.cpp for the implementation of this class
-//
-
+// CCustomRPApp
 class CCustomRPApp : public CWinApp
 {
 public:
-	CCustomRPApp();
+    CCustomRPApp();
 
-// Overrides
-public:
-	virtual BOOL InitInstance();
+    virtual BOOL InitInstance();
+    virtual int ExitInstance();
 
-// Implementation
+    afx_msg void OnAppExit();
+    afx_msg void OnAppSettings();
 
-	DECLARE_MESSAGE_MAP()
+    DECLARE_MESSAGE_MAP()
+
+private:
+    CTrayWnd* m_pTrayWnd; // hidden window for tray icon
 };
 
 extern CCustomRPApp theApp;
