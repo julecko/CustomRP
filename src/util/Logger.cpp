@@ -20,7 +20,7 @@ static const char* levelNames[] = {
     "\x1b[31mERROR\x1b[0m"
 };
 
-Logger::Logger() : currentLevel(LogLevel::LOG_INFO), loggerFlags(LOG_FLAG_NONE) {}
+Logger::Logger() : currentLevel(LogLevel::LOG_DEBUG_ULTRA), loggerFlags(LOG_FLAG_NONE) {}
 
 Logger::~Logger() {
     if (logNormal.is_open()) logNormal.close();

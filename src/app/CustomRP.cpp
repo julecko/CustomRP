@@ -2,6 +2,7 @@
 #include "app/CustomRP.h"
 #include "tray/TrayIcon.h"
 #include "util/Logger.h"
+#include "util/Config.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -21,14 +22,21 @@ BOOL CCustomRPApp::InitInstance()
 {
     CWinApp::InitInstance();
 
+    // Logger initialization
     logger.init("logs/CustomRP.log", "logs/CustomRP-error.log");
 
+    // Config initialiation
+    config.init("config");
+    config.load();
+
+    // Initialize tray icon
     m_pTrayWnd = new CTrayWnd();
     if (!m_pTrayWnd->CreateWnd())
         return FALSE;
 
     m_pMainWnd = m_pTrayWnd; // app lifetime = tray lifetime
 
+    // Profile manager initialization
     pManager = new ProfileManager();
 
     if (pManager->GetAllProfiles().empty()) {
@@ -78,6 +86,8 @@ int CCustomRPApp::ExitInstance()
         m_discordThread.join();
 
     m_discord.reset();
+
+    config.save();
 
     return CWinApp::ExitInstance();
 }

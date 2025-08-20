@@ -112,8 +112,7 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <PreBuildEvent>
-      <Command>
-      </Command>
+      <Command>taskkill /IM CustomRP.exe /F 2&gt;nul || exit 0</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>echo "Copying discord_game_sdk.dll into result folder"
@@ -226,6 +225,7 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
     <ClInclude Include="src\ui\TabAdvanced.h" />
     <ClInclude Include="src\ui\TabGeneral.h" />
     <ClInclude Include="src\pch\targetver.h" />
+    <ClInclude Include="src\util\Config.h" />
     <ClInclude Include="src\util\Logger.h" />
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +258,7 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
     <ClCompile Include="src\ui\TabAbout.cpp" />
     <ClCompile Include="src\ui\TabAdvanced.cpp" />
     <ClCompile Include="src\ui\TabGeneral.cpp" />
+    <ClCompile Include="src\util\Config.cpp" />
     <ClCompile Include="src\util\Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
