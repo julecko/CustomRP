@@ -42,5 +42,6 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnTabSelChange(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
 	DECLARE_MESSAGE_MAP()
 };

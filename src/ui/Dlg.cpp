@@ -38,6 +38,7 @@ BEGIN_MESSAGE_MAP(Dlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_WM_SYSCOMMAND()
 	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB_MAIN, &Dlg::OnTabSelChange)
+	ON_WM_SHOWWINDOW()
 END_MESSAGE_MAP()
 
 
@@ -59,8 +60,7 @@ BOOL Dlg::OnInitDialog()
 		SWP_NOZORDER | SWP_NOMOVE | SWP_NOSIZE | SWP_FRAMECHANGED);
 
 	m_btnOK.m_bDrawFocus = FALSE;
-	m_btnOK.SetFaceColor(RGB(0, 120, 215), TRUE);  // true = gradient
-	m_btnOK.SetFont(GetFont());
+	m_btnCancel.m_bDrawFocus = FALSE;
 
 
 	m_TabMain.InsertItem(0, _T("General"));
@@ -83,8 +83,9 @@ BOOL Dlg::OnInitDialog()
 	m_tabAdvanced.ShowWindow(SW_HIDE);
 	m_tabAbout.ShowWindow(SW_HIDE);
 
+	PostMessage(WM_NEXTDLGCTL, (WPARAM)GetDlgItem(IDOK)->m_hWnd, TRUE);
 
-	return TRUE;  // return TRUE  unless you set the focus to a control
+	return FALSE;  // return TRUE  unless you set the focus to a control
 }
 
 // If you add a minimize button to your dialog, you will need the code below
@@ -143,4 +144,14 @@ void Dlg::OnTabSelChange(NMHDR* pNMHDR, LRESULT* pResult)
 	m_tabAbout.ShowWindow(sel == 2 ? SW_SHOW : SW_HIDE);
 
 	*pResult = 0;
+}
+
+void Dlg::OnShowWindow(BOOL bShow, UINT nStatus)
+{
+	CDialogEx::OnShowWindow(bShow, nStatus);
+
+	if (bShow)
+	{
+		GetDlgItem(IDOK)->SetFocus();
+	}
 }

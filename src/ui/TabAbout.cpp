@@ -28,7 +28,14 @@ void TabAbout::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(TabAbout, CDialogEx)
+    ON_WM_ERASEBKGND()
 END_MESSAGE_MAP()
 
 
-// TabAbout message handlers
+BOOL TabAbout::OnEraseBkgnd(CDC* pDC)
+{
+    CRect rect;
+    GetClientRect(&rect);
+    pDC->FillSolidRect(&rect, RGB(249, 249, 249));
+    return TRUE;
+}
