@@ -26,6 +26,10 @@ Dlg::Dlg(CWnd* pParent /*=nullptr*/)
 void Dlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+
+	DDX_Control(pDX, IDOK, m_btnOK);
+	DDX_Control(pDX, IDCANCEL, m_btnCancel);
+
 	DDX_Control(pDX, IDC_TAB_MAIN, m_TabMain);
 }
 
@@ -49,10 +53,15 @@ BOOL Dlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	LONG style = ::GetWindowLong(this->m_hWnd, GWL_STYLE);
-	style |= WS_SYSMENU | WS_MINIMIZEBOX;
+	style |= WS_SYSMENU;
 	::SetWindowLong(this->m_hWnd, GWL_STYLE, style);
 	::SetWindowPos(this->m_hWnd, nullptr, 0, 0, 0, 0,
 		SWP_NOZORDER | SWP_NOMOVE | SWP_NOSIZE | SWP_FRAMECHANGED);
+
+	m_btnOK.m_bDrawFocus = FALSE;
+	m_btnOK.SetFaceColor(RGB(0, 120, 215), TRUE);  // true = gradient
+	m_btnOK.SetFont(GetFont());
+
 
 	m_TabMain.InsertItem(0, _T("General"));
 	m_TabMain.InsertItem(1, _T("Advanced"));

@@ -22,6 +22,13 @@ BOOL CCustomRPApp::InitInstance()
 {
     CWinApp::InitInstance();
 
+    // Modern look
+    INITCOMMONCONTROLSEX icc = { sizeof(icc) };
+    icc.dwICC = ICC_WIN95_CLASSES | ICC_STANDARD_CLASSES;
+    InitCommonControlsEx(&icc);
+
+    CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerWindows));
+
     // Logger initialization
     logger.init("logs/CustomRP.log", "logs/CustomRP-error.log");
 

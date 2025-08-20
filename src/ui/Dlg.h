@@ -28,6 +28,9 @@ public:
 protected:
 	HICON m_hIcon;
 
+	CMFCButton m_btnOK;
+	CMFCButton m_btnCancel;
+
 	CTabCtrl m_TabMain;
 	TabGeneral   m_tabGeneral;
 	TabAdvanced  m_tabAdvanced;
