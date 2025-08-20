@@ -34,3 +34,7 @@ Binaries/
 *.tmp
 *.cache
 *.vs/
+
+# Project specific
+profiles/
+logs/

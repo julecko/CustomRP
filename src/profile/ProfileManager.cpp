@@ -6,14 +6,10 @@
 namespace fs = std::filesystem;
 
 ProfileManager::ProfileManager(const std::string& dir) : directory(dir) {
-    EnsureDirectoryExists();
-    LoadProfiles();
-}
-
-void ProfileManager::EnsureDirectoryExists() const {
     if (!fs::exists(this->directory)) {
         fs::create_directory(this->directory);
     }
+    LoadProfiles();
 }
 
 std::string ProfileManager::GetFilePath(const std::string& profileName) const {

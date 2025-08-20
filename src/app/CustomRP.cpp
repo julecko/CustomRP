@@ -1,6 +1,7 @@
 #include "pch/pch.h"
 #include "app/CustomRP.h"
 #include "tray/TrayIcon.h"
+#include "util/Logger.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -19,6 +20,8 @@ CCustomRPApp::CCustomRPApp()
 BOOL CCustomRPApp::InitInstance()
 {
     CWinApp::InitInstance();
+
+    logger.init("logs/CustomRP.log", "logs/CustomRP-error.log");
 
     m_pTrayWnd = new CTrayWnd();
     if (!m_pTrayWnd->CreateWnd())

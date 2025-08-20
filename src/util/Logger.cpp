@@ -6,6 +6,9 @@
 #include <iostream>
 #include <sstream>
 #include <cstdarg>
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 Logger logger;
 
@@ -26,6 +29,17 @@ Logger::~Logger() {
 
 void Logger::init(const std::string& normalFile, const std::string& errorFile, LogLevel level, int flags) {
     std::lock_guard<std::mutex> lock(mtx);
+
+    try {
+        if (!normalFile.empty())
+            fs::create_directories(fs::path(normalFile).parent_path());
+        if (!errorFile.empty())
+            fs::create_directories(fs::path(errorFile).parent_path());
+    }
+    catch (...) {
+        std::cerr << "Failed to create log directories\n";
+    }
+
     logNormal.open(normalFile, std::ios::app);
     logError.open(errorFile, std::ios::app);
     currentLevel = level;

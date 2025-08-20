@@ -20,7 +20,6 @@ public:
     const std::string& GetDirectory() const { return directory; }
 
 private:
-    void EnsureDirectoryExists() const;
     std::string GetFilePath(const std::string& profileName) const;
 
     std::string directory;
