@@ -6,6 +6,7 @@
 
 #include "res/resource.h"
 #include "rpc/DiscordPresence.h"
+#include "profile/ProfileManager.h"
 #include <thread>
 #include <memory>
 
@@ -24,6 +25,7 @@ public:
 
 private:
     CTrayWnd* m_pTrayWnd; // hidden window for tray icon
+    ProfileManager* pManager;
 
     std::unique_ptr<MyDiscordPresence> m_discord;
     std::thread m_discordThread;

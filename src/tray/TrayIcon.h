@@ -5,6 +5,7 @@
 #define WM_TRAYICON (WM_USER + 1)
 #define ID_TRAY_EXIT     60001
 #define ID_TRAY_SETTINGS 60002
+#define ID_TRAY_PROFILES 60003
 
 class CTrayIcon
 {

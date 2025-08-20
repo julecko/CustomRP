@@ -12,7 +12,7 @@ END_MESSAGE_MAP()
 CCustomRPApp theApp;
 
 CCustomRPApp::CCustomRPApp()
-    : m_pTrayWnd(nullptr)
+    : m_pTrayWnd(nullptr), pManager(nullptr)
 {
 }
 
@@ -26,7 +26,17 @@ BOOL CCustomRPApp::InitInstance()
 
     m_pMainWnd = m_pTrayWnd; // app lifetime = tray lifetime
 
-    m_discord = std::make_unique<MyDiscordPresence>();
+    pManager = new ProfileManager();
+
+    if (pManager->GetAllProfiles().empty()) {
+        Profile defaultProfile("Default");
+        defaultProfile.SetState("Hello world");
+        defaultProfile.SetDetails("My first presence");
+
+        pManager->AddProfile(defaultProfile);
+    }
+
+    /*m_discord = std::make_unique<MyDiscordPresence>();
     if (m_discord->Initialize(NULL))
     {
         m_discord->UpdatePresence("In Main Menu", "Playing CustomRP");
@@ -35,7 +45,7 @@ BOOL CCustomRPApp::InitInstance()
             if (m_discord)
                 m_discord->RunCallbacks();
             });
-    }
+    }*/
 
     return TRUE;
 }
@@ -47,6 +57,13 @@ int CCustomRPApp::ExitInstance()
         m_pTrayWnd->DestroyWindow();
         delete m_pTrayWnd;
         m_pTrayWnd = nullptr;
+    }
+
+    if (pManager)
+    {
+        pManager->SaveProfiles();
+        delete pManager;
+        pManager = nullptr;
     }
 
     if(m_discord)

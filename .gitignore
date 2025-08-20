@@ -29,7 +29,6 @@ Binaries/
 # MFC / Resource files that are generated
 *.pch
 *.res
-*.rc2
 
 # Visual Studio temporary files
 *.tmp

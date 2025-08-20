@@ -94,6 +94,7 @@
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeaderFile>pch/pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)src;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -111,10 +112,14 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
       <Command>echo "Copying discord_game_sdk.dll into result folder"
 copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
 </Command>
-    </PreBuildEvent>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -209,6 +214,8 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
     <ClInclude Include="include\user_manager.h" />
     <ClInclude Include="include\voice_manager.h" />
     <ClInclude Include="src\app\CustomRP.h" />
+    <ClInclude Include="src\profile\Profile.h" />
+    <ClInclude Include="src\profile\ProfileManager.h" />
     <ClInclude Include="src\rpc\DiscordPresence.h" />
     <ClInclude Include="src\tray\TrayIcon.h" />
     <ClInclude Include="src\ui\Dlg.h" />
@@ -237,6 +244,8 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
     <ClCompile Include="include\user_manager.cpp" />
     <ClCompile Include="include\voice_manager.cpp" />
     <ClCompile Include="src\app\CustomRP.cpp" />
+    <ClCompile Include="src\profile\Profile.cpp" />
+    <ClCompile Include="src\profile\ProfileManager.cpp" />
     <ClCompile Include="src\rpc\DiscordPresence.cpp" />
     <ClCompile Include="src\tray\TrayIcon.cpp" />
     <ClCompile Include="src\ui\Dlg.cpp" />

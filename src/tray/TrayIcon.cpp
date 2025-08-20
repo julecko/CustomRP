@@ -30,6 +30,7 @@ LRESULT CTrayWnd::OnTrayNotify(WPARAM wParam, LPARAM lParam)
     {
         CMenu menu;
         menu.CreatePopupMenu();
+        menu.AppendMenu(MF_STRING, ID_TRAY_PROFILES, _T("Profiles"));
         menu.AppendMenu(MF_STRING, ID_TRAY_SETTINGS, _T("Settings..."));
         menu.AppendMenu(MF_STRING, ID_TRAY_EXIT, _T("Exit"));
 
