@@ -112,12 +112,12 @@
       <AdditionalIncludeDirectories>$(ProjectDir)src\pch;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <PreBuildEvent>
-      <Command>taskkill /IM CustomRP.exe /F 2&gt;nul || exit 0</Command>
+      <Command>taskkill /IM CustomRP.exe /F 2&gt;nul || exit 0
+</Command>
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>echo "Copying discord_game_sdk.dll into result folder"
-copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
-</Command>
+copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"</Command>
     </PostBuildEvent>
     <Manifest>
       <AdditionalManifestFiles>$(ProjectDir)app.manifest %(AdditionalManifestFiles)</AdditionalManifestFiles>
@@ -129,10 +129,14 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>pch/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)src;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>discord_game_sdk.dll.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -142,8 +146,16 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
     <ResourceCompile>
       <Culture>0x0409</Culture>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\pch;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent>
+      <Command>taskkill /IM CustomRP.exe /F 2&gt;nul || exit 0
+</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>echo "Copying discord_game_sdk.dll into result folder"
+copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -153,12 +165,16 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>pch/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)src;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>discord_game_sdk.dll.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -168,8 +184,16 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
     <ResourceCompile>
       <Culture>0x0409</Culture>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\pch;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent>
+      <Command>taskkill /IM CustomRP.exe /F 2&gt;nul || exit 0
+</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>echo "Copying discord_game_sdk.dll into result folder"
+copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -179,12 +203,16 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>pch/pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)src;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>discord_game_sdk.dll.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -194,8 +222,16 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
     <ResourceCompile>
       <Culture>0x0409</Culture>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src\pch;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent>
+      <Command>taskkill /IM CustomRP.exe /F 2&gt;nul || exit 0
+</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>echo "Copying discord_game_sdk.dll into result folder"
+copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\achievement_manager.h" />
@@ -271,16 +307,6 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
     <None Include="res\CustomRP.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\downloads\favicon-1,favicon-2,favicon-3\bitmap4.bmp" />
-    <Image Include="..\..\..\..\Downloads\favicon-1,favicon-2,favicon-3\favicon-1.bmp" />
-    <Image Include="..\..\..\..\Downloads\favicon-1,favicon-2,favicon-3\favicon-9.bmp" />
-    <Image Include="..\..\..\..\downloads\favicon-1,favicon-2,favicon-3\icon1.ico" />
-    <Image Include="..\..\..\..\Downloads\favicon-9.bmp" />
-    <Image Include="..\..\..\..\Downloads\favicon-9.ico" />
-    <Image Include="..\..\..\..\Downloads\favicon-final.bmp" />
-    <Image Include="..\..\..\..\Downloads\favicon-final.ico" />
-    <Image Include="..\..\..\..\Downloads\favicon.ico" />
-    <Image Include="CustomRP.ico" />
     <Image Include="res\CustomRP.ico" />
   </ItemGroup>
   <ItemGroup>
