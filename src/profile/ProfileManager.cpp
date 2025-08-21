@@ -1,13 +1,13 @@
 #include "pch/pch.h"
 #include "ProfileManager.h"
+#include "util/Util.h"
 #include <filesystem>
 
 namespace fs = std::filesystem;
 
 ProfileManager::ProfileManager(const std::string& dir) : directory(dir) {
-    if (!fs::exists(directory)) {
-        fs::create_directory(directory);
-    }
+    directory = Util::GetAppDataFolder() + "Profiles\\";
+    Util::EnsureDirectoryExists(directory);
     LoadProfiles();
 }
 

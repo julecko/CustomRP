@@ -15,6 +15,12 @@ bool MyDiscordPresence::Initialize(uint64_t clientId)
 {
     discord::Core* corePtr{};
     auto result = discord::Core::Create(clientId, DiscordCreateFlags_Default, &corePtr);
+
+    if (result != discord::Result::Ok || !corePtr) {
+        AfxMessageBox(_T("Discord is not started or client ID is invalid."));
+        return false;
+    }
+
     core.reset(corePtr);
 
 

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.14.36408.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CustomRP", "CustomRP.vcxproj", "{B224F150-108B-521F-B75E-4149C86C75D6}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CustomRPInstaller", "..\CustomRPInstaller\CustomRPInstaller.vdproj", "{25FEF57F-6D5B-9F41-3CF1-5599CF5D0F65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -20,10 +23,10 @@ Global
 		{B224F150-108B-521F-B75E-4149C86C75D6}.Release|x64.Build.0 = Release|x64
 		{B224F150-108B-521F-B75E-4149C86C75D6}.Release|x86.ActiveCfg = Release|Win32
 		{B224F150-108B-521F-B75E-4149C86C75D6}.Release|x86.Build.0 = Release|Win32
-		{699017D6-BCA5-CDB8-23AB-8727BFE4B16A}.Debug|x64.ActiveCfg = Debug
-		{699017D6-BCA5-CDB8-23AB-8727BFE4B16A}.Debug|x86.ActiveCfg = Debug
-		{699017D6-BCA5-CDB8-23AB-8727BFE4B16A}.Release|x64.ActiveCfg = Release
-		{699017D6-BCA5-CDB8-23AB-8727BFE4B16A}.Release|x86.ActiveCfg = Release
+		{25FEF57F-6D5B-9F41-3CF1-5599CF5D0F65}.Debug|x64.ActiveCfg = Debug
+		{25FEF57F-6D5B-9F41-3CF1-5599CF5D0F65}.Debug|x86.ActiveCfg = Debug
+		{25FEF57F-6D5B-9F41-3CF1-5599CF5D0F65}.Release|x64.ActiveCfg = Release
+		{25FEF57F-6D5B-9F41-3CF1-5599CF5D0F65}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

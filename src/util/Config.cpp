@@ -1,12 +1,15 @@
 #include "pch/pch.h"
 #include "Config.h"
+#include "util/Util.h"
 #include <fstream>
 
 Config config;
 const std::vector<std::string> required = { "DISCORD_CLIENT_ID" };
 
 void Config::init(const std::string& filename) {
-    this->filename = filename;
+    this->filename = Util::GetAppDataFolder() + filename;
+    Util::EnsureDirectoryExists(Util::GetAppDataFolder());
+    Util::EnsureFileExists(this->filename, "# Default config\n");
 }
 
 bool Config::load() {

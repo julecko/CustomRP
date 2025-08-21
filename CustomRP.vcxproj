@@ -265,6 +265,7 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"</Command>
     <ClInclude Include="src\pch\targetver.h" />
     <ClInclude Include="src\util\Config.h" />
     <ClInclude Include="src\util\Logger.h" />
+    <ClInclude Include="src\util\Util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="include\achievement_manager.cpp" />
@@ -297,6 +298,7 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"</Command>
     <ClCompile Include="src\ui\TabGeneral.cpp" />
     <ClCompile Include="src\util\Config.cpp" />
     <ClCompile Include="src\util\Logger.cpp" />
+    <ClCompile Include="src\util\Util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\CustomRP.rc" />
