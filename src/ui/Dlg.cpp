@@ -80,7 +80,7 @@ BOOL Dlg::OnInitDialog()
 	m_TabMain.ClientToScreen(&rc);
 	this->ScreenToClient(&rc);
 
-	rc.DeflateRect(2, 2); // optional: padding
+	rc.DeflateRect(10, 10); // optional: padding
 
 	m_tabGeneral.MoveWindow(&rc);
 	m_tabAdvanced.MoveWindow(&rc);
