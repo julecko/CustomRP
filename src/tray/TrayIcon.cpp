@@ -31,49 +31,50 @@ BOOL CTrayWnd::CreateWnd()
 
 void CTrayWnd::BuildProfileMenu(CMenu& menu)
 {
-    CMenu profilesMenu;
-    profilesMenu.CreatePopupMenu();
-
-    m_profileMenuMap.clear();
     m_profileActionMap.clear();
     m_nextProfileCmdId = ID_TRAY_PROFILE_START;
 
+    // Add all profiles with Connect / Reconnect options directly in the main menu
     for (const auto& profile : theApp.pManager->GetAllProfiles())
     {
-        // Profile submenu
-        CMenu profileSubMenu;
-        profileSubMenu.CreatePopupMenu();
-
-        std::string profName = profile.GetName();
-        if (profName == m_currentProfile)
-            profName = "*" + profName;
-
         std::string profileName = profile.GetName();
         bool isConnected = (profileName == m_currentProfile);
 
-        // Connect
+        // Prefix * for active profile
+        std::string displayName = profileName;
+        if (isConnected)
+            displayName = "*" + profileName;
+
+        // Profile name as submenu
+        CMenu profileSubMenu;
+        profileSubMenu.CreatePopupMenu();
+
+        // Connect option
         UINT connectId = m_nextProfileCmdId++;
         profileSubMenu.AppendMenu(isConnected ? MF_GRAYED : MF_STRING, connectId, _T("Connect"));
-        m_profileActionMap[connectId] = { profile.GetName(), ProfileAction::Connect };
+        m_profileActionMap[connectId] = { profileName, ProfileAction::Connect };
 
-        // Disconnect
-        UINT disconnectId = m_nextProfileCmdId++;
-        profileSubMenu.AppendMenu(isConnected ? MF_STRING : MF_GRAYED, disconnectId, _T("Disconnect"));
-        m_profileActionMap[disconnectId] = { profile.GetName(), ProfileAction::Disconnect };
+        // Reconnect option
+        UINT reconnectId = m_nextProfileCmdId++;
+        profileSubMenu.AppendMenu(MF_STRING, reconnectId, _T("Reconnect"));
+        m_profileActionMap[reconnectId] = { profileName, ProfileAction::Refresh };
 
-        // Refresh
-        UINT refreshId = m_nextProfileCmdId++;
-        profileSubMenu.AppendMenu(isConnected ? MF_STRING : MF_GRAYED, refreshId, _T("Refresh"));
-        m_profileActionMap[refreshId] = { profile.GetName(), ProfileAction::Refresh };
-
-        // Add submenu to main profiles menu
-        profilesMenu.AppendMenu(MF_POPUP, (UINT_PTR)profileSubMenu.Detach(), CA2T(profName.c_str()));
+        // Add profile submenu to main menu
+        menu.AppendMenu(MF_POPUP, (UINT_PTR)profileSubMenu.Detach(), CA2T(displayName.c_str()));
     }
 
-    menu.AppendMenu(MF_POPUP, (UINT_PTR)profilesMenu.Detach(), _T("Profiles"));
+    // Separator line
+    menu.AppendMenu(MF_SEPARATOR);
+
+    // Single Disconnect button (applies to current profile)
+    menu.AppendMenu(MF_STRING | (m_currentProfile.empty() ? MF_GRAYED : 0),
+        ID_TRAY_DISCONNECT, _T("Disconnect"));
+
+    // Settings and Exit
     menu.AppendMenu(MF_STRING, ID_TRAY_SETTINGS, _T("Settings..."));
     menu.AppendMenu(MF_STRING, ID_TRAY_EXIT, _T("Exit"));
 }
+
 
 
 LRESULT CTrayWnd::OnTrayNotify(WPARAM wParam, LPARAM lParam)
@@ -103,6 +104,10 @@ LRESULT CTrayWnd::OnTrayNotify(WPARAM wParam, LPARAM lParam)
         {
             OnTrayExit();
         }
+        else if (cmd == ID_TRAY_DISCONNECT)
+        {
+            DisconnectProfile();
+        }
     }
 
     return 0;
@@ -121,10 +126,6 @@ void CTrayWnd::OnTrayProfileAction(UINT nID)
     {
     case ProfileAction::Connect:    
         ConnectProfile(profileName);
-        break;
-    case ProfileAction::Disconnect:
-        if (m_currentProfile == profileName)
-            DisconnectProfile();
         break;
     case ProfileAction::Refresh:
         ConnectProfile(profileName);

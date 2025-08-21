@@ -15,9 +15,9 @@
 
 #define ID_TRAY_PROFILE_START   61000
 #define ID_TRAY_PROFILE_END     62000
+#define ID_TRAY_DISCONNECT      63000
 
-#define ID_PROFILE_CONNECT      63000
-#define ID_PROFILE_DISCONNECT   63001
+#define ID_PROFILE_CONNECT      63001
 #define ID_PROFILE_REFRESH      63002
 
 
@@ -70,7 +70,7 @@ private:
     CTrayIcon m_trayIcon;
     std::unordered_map<UINT, std::pair<std::string, int>> m_profileActionMap; 
     std::unordered_map<UINT, std::string> m_profileMenuMap;
-    enum ProfileAction { Connect = 1, Disconnect, Refresh };
+    enum ProfileAction { Connect = 1, Refresh = 2 };
     UINT m_nextProfileCmdId = ID_TRAY_PROFILE_START;
     std::string m_currentProfile;
 };
