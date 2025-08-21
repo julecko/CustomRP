@@ -39,6 +39,7 @@ BEGIN_MESSAGE_MAP(Dlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB_MAIN, &Dlg::OnTabSelChange)
 	ON_WM_SHOWWINDOW()
+	ON_BN_CLICKED(IDOK, &Dlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -67,13 +68,19 @@ BOOL Dlg::OnInitDialog()
 	m_TabMain.InsertItem(1, _T("Advanced"));
 	m_TabMain.InsertItem(2, _T("About"));
 
-	m_tabGeneral.Create(IDD_TAB_GENERAL, &m_TabMain);
-	m_tabAdvanced.Create(IDD_TAB_ADVANCED, &m_TabMain);
-	m_tabAbout.Create(IDD_TAB_ABOUT, &m_TabMain);
+	m_tabGeneral.Create(IDD_TAB_GENERAL, this);
+	m_tabAdvanced.Create(IDD_TAB_ADVANCED, this);
+	m_tabAbout.Create(IDD_TAB_ABOUT, this);
 
 	CRect rc;
 	m_TabMain.GetClientRect(&rc);
-	m_TabMain.AdjustRect(FALSE, &rc);
+	m_TabMain.AdjustRect(FALSE, &rc); // get page area
+
+	// convert tab's client rect to dialog coordinates
+	m_TabMain.ClientToScreen(&rc);
+	this->ScreenToClient(&rc);
+
+	rc.DeflateRect(2, 2); // optional: padding
 
 	m_tabGeneral.MoveWindow(&rc);
 	m_tabAdvanced.MoveWindow(&rc);
@@ -85,7 +92,7 @@ BOOL Dlg::OnInitDialog()
 
 	PostMessage(WM_NEXTDLGCTL, (WPARAM)GetDlgItem(IDOK)->m_hWnd, TRUE);
 
-	return FALSE;  // return TRUE  unless you set the focus to a control
+	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
 // If you add a minimize button to your dialog, you will need the code below
@@ -154,4 +161,13 @@ void Dlg::OnShowWindow(BOOL bShow, UINT nStatus)
 	{
 		GetDlgItem(IDOK)->SetFocus();
 	}
+}
+
+
+void Dlg::OnBnClickedOk()
+{
+	CString name = m_tabGeneral.GetNameText();
+    AfxMessageBox(_T("Name entered: ") + name);
+
+	CDialogEx::OnOK(); // close dialog
 }

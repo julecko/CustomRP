@@ -8,6 +8,7 @@
 #include "ui/TabAdvanced.h"
 #include "ui/TabAbout.h"
 
+
 // Dlg dialog
 class Dlg : public CDialogEx
 {
@@ -35,6 +36,8 @@ protected:
 	TabGeneral   m_tabGeneral;
 	TabAdvanced  m_tabAdvanced;
 	TabAbout     m_tabAbout;
+
+	BOOL m_bInitialized;
 	
 	// Generated message map functions
 	virtual BOOL OnInitDialog();
@@ -43,5 +46,7 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnTabSelChange(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnShowWindow(BOOL bShow, UINT nStatus);
+	afx_msg void OnBnClickedOk();
+	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	DECLARE_MESSAGE_MAP()
 };
