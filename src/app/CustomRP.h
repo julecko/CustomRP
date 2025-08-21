@@ -26,6 +26,8 @@ public:
     DECLARE_MESSAGE_MAP()
 
 private:
+    HANDLE m_hMutex;
+
     CTrayWnd* m_pTrayWnd; // hidden window for tray icon
 
     std::unique_ptr<MyDiscordPresence> m_discord;

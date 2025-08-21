@@ -22,6 +22,12 @@ BOOL CCustomRPApp::InitInstance()
 {
     CWinApp::InitInstance();
 
+    m_hMutex = CreateMutex(NULL, TRUE, L"Global\\CustomRP_SingleInstance");
+    if (GetLastError() == ERROR_ALREADY_EXISTS)
+    {
+        return FALSE; // Exit this instance
+    }
+
     // Modern look
     INITCOMMONCONTROLSEX icc = { sizeof(icc) };
     icc.dwICC = ICC_WIN95_CLASSES | ICC_STANDARD_CLASSES;
@@ -95,6 +101,13 @@ int CCustomRPApp::ExitInstance()
     m_discord.reset();
 
     config.save();
+
+    if (m_hMutex)
+    {
+        ReleaseMutex(m_hMutex);
+        CloseHandle(m_hMutex);
+        m_hMutex = nullptr;
+    }
 
     return CWinApp::ExitInstance();
 }
