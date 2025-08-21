@@ -84,6 +84,8 @@ int CCustomRPApp::ExitInstance()
         m_discord->Shutdown();
     }
 
+    m_discord.reset();
+
     if (m_discordThread.joinable())
         m_discordThread.join();
 

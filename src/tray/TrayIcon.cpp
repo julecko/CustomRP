@@ -127,7 +127,6 @@ void CTrayWnd::OnTrayProfileAction(UINT nID)
             DisconnectProfile();
         break;
     case ProfileAction::Refresh:
-        DisconnectProfile();
         ConnectProfile(profileName);
         break;
     }
@@ -219,7 +218,6 @@ bool CTrayWnd::TryInitDiscord(uint64_t clientId)
     
     return true;
 }
-
 
 void CTrayWnd::ConnectProfile(const std::string& profileName)
 {
