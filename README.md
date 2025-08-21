@@ -12,16 +12,33 @@
 
 ## Installation
 
-1. Download the latest **release** from the releases page.
-2. Run `CustomRP.msi`. It will install customrp into pc.
-3. From windows start menu start `CustomRP.exe` and tray icon should appear.
+1. Create an application in the [Discord Developer Portal](https://discord.com/developers/applications):
+   - Set the **name** of the application (this will be shown on Discord).
+   - Add an **icon** in the application settings (this will appear in Discord Rich Presence).
+   - Copy the **Discord Client ID** to use in CustomRP.
+
+2. Download the latest **release** from the releases page.
+
+3. Run `CustomRP.msi` to install CustomRP on your PC.
+
+4. Start `CustomRP.exe` from the Windows Start Menu. A tray icon will appear in the bottom right corner.
+
+5. Right-click the tray icon and open **Settings** to set your Discord Client ID and configure profiles:
+   - Each profile can have its own **Details** and **State** for Discord Rich Presence.
 
 ## Usage
 
 1. Right-click the tray icon to open the menu.
 2. Select a profile from the **Profiles** submenu.
-3. Use **Connect**, **Disconnect**, or **Refresh** buttons for Discord Rich Presence.
-4. Open **Settings** from the tray menu to configure profiles.
+3. Use **Connect**, **Disconnect**, or **Refresh** to update Discord Rich Presence.
+4. Open **Settings** from the tray menu to manage profiles and configure Discord Client ID.
+
+## Possible Error Situations
+
+- **Invalid Discord Client ID**: The application will not connect. Make sure the ID is correct.
+- **Discord not running**: Start Discord before running CustomRP.
+- In either case, restart CustomRP after fixing the problem.
+- For any other issues, submit an [issue on GitHub](https://github.com/julecko/CustomRP) or contact the author at **julecko@dilino.sk**.
 
 ## Requirements
 
