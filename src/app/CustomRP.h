@@ -15,6 +15,8 @@ class CTrayWnd;
 class CCustomRPApp : public CWinApp
 {
 public:
+    ProfileManager* pManager;
+
     CCustomRPApp();
 
     virtual BOOL InitInstance();
@@ -25,7 +27,6 @@ public:
 
 private:
     CTrayWnd* m_pTrayWnd; // hidden window for tray icon
-    ProfileManager* pManager;
 
     std::unique_ptr<MyDiscordPresence> m_discord;
     std::thread m_discordThread;

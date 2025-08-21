@@ -5,6 +5,7 @@
 #include "pch/framework.h"
 #include "app/CustomRP.h"
 #include "ui/Dlg.h"
+#include "util/Config.h"
 
 #include "afxdialogex.h"
 
@@ -90,7 +91,7 @@ BOOL Dlg::OnInitDialog()
 	m_tabAdvanced.ShowWindow(SW_HIDE);
 	m_tabAbout.ShowWindow(SW_HIDE);
 
-	PostMessage(WM_NEXTDLGCTL, (WPARAM)GetDlgItem(IDOK)->m_hWnd, TRUE);
+	m_tabGeneral.SetDiscordClientId(config.get("DISCORD_CLIENT_ID"));
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -166,8 +167,10 @@ void Dlg::OnShowWindow(BOOL bShow, UINT nStatus)
 
 void Dlg::OnBnClickedOk()
 {
-	CString name = m_tabGeneral.GetNameText();
-    AfxMessageBox(_T("Name entered: ") + name);
+	std::string discord_client_id = m_tabGeneral.GetDiscordClientId();
 
+	config.set("DISCORD_CLIENT_ID", discord_client_id);
+
+	config.save();
 	CDialogEx::OnOK(); // close dialog
 }

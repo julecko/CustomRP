@@ -26,7 +26,7 @@ void TabGeneral::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 
-    DDX_Control(pDX, IDC_DISCORD_ID_INPUT, m_editName);
+    DDX_Control(pDX, IDC_DISCORD_ID_INPUT, m_discordClientId);
 }
 
 
@@ -50,11 +50,23 @@ void TabGeneral::OnStnClickedIdInputLabel()
     // TODO: Add your control notification handler code here
 }
 
-CString TabGeneral::GetNameText() const
+std::string TabGeneral::GetDiscordClientId() const
 {
     CString text;
-    m_editName.GetWindowText(text);
-    return text;
+    m_discordClientId.GetWindowText(text);
+
+    CT2A ascii(text);  // convert CString (wchar_t) to char*
+    return std::string(ascii);
+}
+
+void TabGeneral::SetDiscordClientId(std::string id)
+{
+    CString csId(id.c_str());
+
+    if (m_discordClientId.GetSafeHwnd())
+    {
+        m_discordClientId.SetWindowText(csId);
+    }
 }
 
 HBRUSH TabGeneral::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)

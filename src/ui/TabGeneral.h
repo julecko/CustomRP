@@ -19,11 +19,12 @@ public:
 
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-	CEdit m_editName;
-	CString GetNameText() const;
+	std::string GetDiscordClientId() const;
+	void SetDiscordClientId(std::string);
 
 protected:
 	CBrush m_brBackground;
+	CEdit m_discordClientId;
 
 	CString m_strName;
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
