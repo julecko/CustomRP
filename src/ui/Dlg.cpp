@@ -91,7 +91,11 @@ BOOL Dlg::OnInitDialog()
 	m_tabAdvanced.ShowWindow(SW_HIDE);
 	m_tabAbout.ShowWindow(SW_HIDE);
 
+
 	m_tabGeneral.SetDiscordClientId(config.get("DISCORD_CLIENT_ID"));
+	for (const auto& profile : theApp.pManager->GetAllProfiles()) {
+		m_tabGeneral.m_profileList.AddString(CA2T(profile.GetName().c_str()));
+	}
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }

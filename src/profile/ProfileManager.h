@@ -1,27 +1,41 @@
 #pragma once
 #include "Profile.h"
-#include <vector>
 #include <string>
-#include <memory>
+#include <unordered_set>
+
+struct ProfileHash {
+    std::size_t operator()(const Profile& p) const {
+        return std::hash<std::string>()(p.GetName());
+    }
+};
+
+struct ProfileEqual {
+    bool operator()(const Profile& lhs, const Profile& rhs) const {
+        return lhs.GetName() == rhs.GetName();
+    }
+};
 
 class ProfileManager {
 public:
-    ProfileManager(const std::string& directory = "profiles");
+    ProfileManager(const std::string& dir = "profiles");
 
     void LoadProfiles();
     void SaveProfiles() const;
 
     Profile* GetProfile(const std::string& name);
-    std::vector<Profile>& GetAllProfiles() { return profiles; }
+    const Profile* GetProfile(const std::string& name) const;
+    const std::unordered_set<Profile, ProfileHash, ProfileEqual>& GetAllProfiles() const { return profiles; }
 
-    void AddProfile(const Profile& profile);
+    void AddProfile(Profile profile);
     void RemoveProfile(const std::string& name);
 
     const std::string& GetDirectory() const { return directory; }
+
+    std::string GetUniqueName(const std::string& baseName) const;
 
 private:
     std::string GetFilePath(const std::string& profileName) const;
 
     std::string directory;
-    std::vector<Profile> profiles;
+    std::unordered_set<Profile, ProfileHash, ProfileEqual> profiles;
 };

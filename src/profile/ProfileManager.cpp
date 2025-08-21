@@ -1,63 +1,78 @@
 #include "pch/pch.h"
 #include "ProfileManager.h"
 #include <filesystem>
-#include <algorithm>
 
 namespace fs = std::filesystem;
 
 ProfileManager::ProfileManager(const std::string& dir) : directory(dir) {
-    if (!fs::exists(this->directory)) {
-        fs::create_directory(this->directory);
+    if (!fs::exists(directory)) {
+        fs::create_directory(directory);
     }
     LoadProfiles();
 }
 
 std::string ProfileManager::GetFilePath(const std::string& profileName) const {
-    return this->directory + "/" + profileName + ".txt";
+    return directory + "/" + profileName + ".txt";
 }
 
 void ProfileManager::LoadProfiles() {
-    this->profiles.clear();
-    if (!fs::exists(this->directory)) return;
+    profiles.clear();
+    if (!fs::exists(directory)) return;
 
-    for (const auto& entry : fs::directory_iterator(this->directory)) {
+    for (const auto& entry : fs::directory_iterator(directory)) {
         if (entry.is_regular_file() && entry.path().extension() == ".txt") {
             Profile p;
             if (p.LoadFromFile(entry.path().string())) {
-                this->profiles.push_back(p);
+                profiles.insert(p);
             }
         }
     }
 }
 
 void ProfileManager::SaveProfiles() const {
-    for (const auto& p : this->profiles) {
+    for (const auto& p : profiles) {
         p.SaveToFile(GetFilePath(p.GetName()));
     }
 }
 
 Profile* ProfileManager::GetProfile(const std::string& name) {
-    auto it = std::find_if(this->profiles.begin(), this->profiles.end(),
+    auto it = std::find_if(profiles.begin(), profiles.end(),
         [&](const Profile& p) { return p.GetName() == name; });
 
-    return (it != this->profiles.end()) ? &(*it) : nullptr;
+    return (it != profiles.end()) ? const_cast<Profile*>(&(*it)) : nullptr;
 }
 
-void ProfileManager::AddProfile(const Profile& profile) {
-    this->profiles.push_back(profile);
-    this->profiles.back().SaveToFile(GetFilePath(profile.GetName()));
+const Profile* ProfileManager::GetProfile(const std::string& name) const {
+    auto it = std::find_if(profiles.begin(), profiles.end(),
+        [&](const Profile& p) { return p.GetName() == name; });
+    return (it != profiles.end()) ? &(*it) : nullptr;
+}
+
+void ProfileManager::AddProfile(Profile profile) {
+    profile.SetName(GetUniqueName(profile.GetName()));
+
+    profiles.insert(profile);
+    profile.SaveToFile(GetFilePath(profile.GetName()));
 }
 
 void ProfileManager::RemoveProfile(const std::string& name) {
-    this->profiles.erase(
-        std::remove_if(this->profiles.begin(), this->profiles.end(),
-            [&](const Profile& p) {
-                if (p.GetName() == name) {
-                    std::filesystem::remove(GetFilePath(name));
-                    return true;
-                }
-                return false;
-            }),
-        this->profiles.end()
-    );
+    auto it = std::find_if(profiles.begin(), profiles.end(),
+        [&](const Profile& p) { return p.GetName() == name; });
+
+    if (it != profiles.end()) {
+        fs::remove(GetFilePath(name));
+        profiles.erase(it);
+    }
+}
+
+std::string ProfileManager::GetUniqueName(const std::string& baseName) const {
+    std::string name = baseName;
+    int counter = 1;
+
+    while (GetProfile(name)) { // while name exists
+        name = baseName + std::to_string(counter);
+        counter++;
+    }
+
+    return name;
 }
