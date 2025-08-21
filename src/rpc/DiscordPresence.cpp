@@ -2,6 +2,9 @@
 #include "DiscordPresence.h"
 #include <chrono>
 
+std::unique_ptr<MyDiscordPresence> m_discord;
+std::thread m_discordThread;
+
 MyDiscordPresence::MyDiscordPresence() : interrupted(false) {}
 
 MyDiscordPresence::~MyDiscordPresence() {

@@ -72,7 +72,4 @@ private:
     enum ProfileAction { Connect = 1, Disconnect, Refresh };
     UINT m_nextProfileCmdId = ID_TRAY_PROFILE_START;
     std::string m_currentProfile;
-
-    std::unique_ptr<MyDiscordPresence> m_discord;
-    std::thread m_discordThread;
 };

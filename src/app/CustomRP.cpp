@@ -60,17 +60,6 @@ BOOL CCustomRPApp::InitInstance()
         pManager->AddProfile(defaultProfile);
     }
 
-    /*m_discord = std::make_unique<MyDiscordPresence>();
-    if (m_discord->Initialize(NULL))
-    {
-        m_discord->UpdatePresence("In Main Menu", "Playing CustomRP");
-
-        m_discordThread = std::thread([this]() {
-            if (m_discord)
-                m_discord->RunCallbacks();
-            });
-    }*/
-
     return TRUE;
 }
 
@@ -98,7 +87,6 @@ int CCustomRPApp::ExitInstance()
     if (m_discordThread.joinable())
         m_discordThread.join();
 
-    m_discord.reset();
 
     config.save();
 

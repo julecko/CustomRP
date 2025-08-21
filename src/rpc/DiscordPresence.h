@@ -26,3 +26,5 @@ private:
     std::unique_ptr<discord::Core> core;
     std::atomic<bool> interrupted;
 };
+extern std::unique_ptr<MyDiscordPresence> m_discord;
+extern std::thread m_discordThread;

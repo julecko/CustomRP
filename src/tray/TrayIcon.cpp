@@ -48,19 +48,22 @@ void CTrayWnd::BuildProfileMenu(CMenu& menu)
         if (profName == m_currentProfile)
             profName = "*" + profName;
 
+        std::string profileName = profile.GetName();
+        bool isConnected = (profileName == m_currentProfile);
+
         // Connect
         UINT connectId = m_nextProfileCmdId++;
-        profileSubMenu.AppendMenu(MF_STRING, connectId, _T("Connect"));
+        profileSubMenu.AppendMenu(isConnected ? MF_GRAYED : MF_STRING, connectId, _T("Connect"));
         m_profileActionMap[connectId] = { profile.GetName(), ProfileAction::Connect };
 
         // Disconnect
         UINT disconnectId = m_nextProfileCmdId++;
-        profileSubMenu.AppendMenu(MF_STRING, disconnectId, _T("Disconnect"));
+        profileSubMenu.AppendMenu(isConnected ? MF_STRING : MF_GRAYED, disconnectId, _T("Disconnect"));
         m_profileActionMap[disconnectId] = { profile.GetName(), ProfileAction::Disconnect };
 
         // Refresh
         UINT refreshId = m_nextProfileCmdId++;
-        profileSubMenu.AppendMenu(MF_STRING, refreshId, _T("Refresh"));
+        profileSubMenu.AppendMenu(isConnected ? MF_STRING : MF_GRAYED, refreshId, _T("Refresh"));
         m_profileActionMap[refreshId] = { profile.GetName(), ProfileAction::Refresh };
 
         // Add submenu to main profiles menu
@@ -124,13 +127,8 @@ void CTrayWnd::OnTrayProfileAction(UINT nID)
             DisconnectProfile();
         break;
     case ProfileAction::Refresh:
-        if (m_currentProfile == profileName && m_discord)
-        {
-            m_discord->UpdatePresence(
-                theApp.pManager->GetProfile(profileName)->GetState(),
-                theApp.pManager->GetProfile(profileName)->GetDetails()
-            );
-        }
+        DisconnectProfile();
+        ConnectProfile(profileName);
         break;
     }
 }
