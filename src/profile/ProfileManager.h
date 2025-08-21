@@ -33,7 +33,12 @@ public:
 
     std::string GetUniqueName(const std::string& baseName) const;
 
+    void SetCurrentProfile(const std::string& name) { currentProfile = GetProfile(name); }
+    Profile* GetCurrentProfile() const { return currentProfile; }
+
 private:
+    Profile* currentProfile = nullptr;
+
     std::string GetFilePath(const std::string& profileName) const;
 
     std::string directory;
