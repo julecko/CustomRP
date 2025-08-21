@@ -17,7 +17,6 @@
 // Dlg dialog
 
 
-
 Dlg::Dlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_CUSTOMRP_DIALOG, pParent)
 {
@@ -66,11 +65,9 @@ BOOL Dlg::OnInitDialog()
 
 
 	m_TabMain.InsertItem(0, _T("General"));
-	m_TabMain.InsertItem(1, _T("Advanced"));
 	m_TabMain.InsertItem(2, _T("About"));
 
 	m_tabGeneral.Create(IDD_TAB_GENERAL, this);
-	m_tabAdvanced.Create(IDD_TAB_ADVANCED, this);
 	m_tabAbout.Create(IDD_TAB_ABOUT, this);
 
 	CRect rc;
@@ -84,11 +81,9 @@ BOOL Dlg::OnInitDialog()
 	rc.DeflateRect(10, 10); // optional: padding
 
 	m_tabGeneral.MoveWindow(&rc);
-	m_tabAdvanced.MoveWindow(&rc);
 	m_tabAbout.MoveWindow(&rc);
 
 	m_tabGeneral.ShowWindow(SW_SHOW);
-	m_tabAdvanced.ShowWindow(SW_HIDE);
 	m_tabAbout.ShowWindow(SW_HIDE);
 
 
@@ -152,8 +147,7 @@ void Dlg::OnTabSelChange(NMHDR* pNMHDR, LRESULT* pResult)
 	int sel = m_TabMain.GetCurSel();
 
 	m_tabGeneral.ShowWindow(sel == 0 ? SW_SHOW : SW_HIDE);
-	m_tabAdvanced.ShowWindow(sel == 1 ? SW_SHOW : SW_HIDE);
-	m_tabAbout.ShowWindow(sel == 2 ? SW_SHOW : SW_HIDE);
+	m_tabAbout.ShowWindow(sel == 1 ? SW_SHOW : SW_HIDE);
 
 	*pResult = 0;
 }

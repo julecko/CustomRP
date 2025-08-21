@@ -36,9 +36,6 @@
     <ClInclude Include="src\ui\TabGeneral.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ui\TabAdvanced.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\ui\TabAbout.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -125,9 +122,6 @@
     <ClCompile Include="src\ui\TabGeneral.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ui\TabAdvanced.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\ui\TabAbout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -205,7 +199,37 @@
     <None Include=".gitattributes" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\Downloads\favicon.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\favicon-1,favicon-2,favicon-3\favicon-9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\favicon-1,favicon-2,favicon-3\favicon-1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\favicon-9.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\downloads\favicon-1,favicon-2,favicon-3\bitmap4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\favicon-final.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\downloads\favicon-1,favicon-2,favicon-3\icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\favicon-final.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Downloads\favicon-9.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
     <Image Include="res\CustomRP.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="CustomRP.ico">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

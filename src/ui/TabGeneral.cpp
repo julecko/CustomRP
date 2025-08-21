@@ -20,6 +20,7 @@ TabGeneral::TabGeneral(CWnd* pParent /*=nullptr*/)
 
 TabGeneral::~TabGeneral()
 {
+    SaveAllProfiles();
 }
 
 void TabGeneral::DoDataExchange(CDataExchange* pDX)
@@ -215,4 +216,11 @@ void TabGeneral::ClearProfileInputs()
     m_editName.SetWindowText(_T(""));
     m_editState.SetWindowText(_T(""));
     m_editDetails.SetWindowText(_T(""));
+}
+
+void TabGeneral::SaveAllProfiles()
+{
+    OnNameEditKillFocus();
+    OnDetailsEditKillFocus();
+    OnStateEditKillFocus();
 }

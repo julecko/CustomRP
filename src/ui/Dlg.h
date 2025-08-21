@@ -34,10 +34,7 @@ protected:
 
 	CTabCtrl m_TabMain;
 	TabGeneral   m_tabGeneral;
-	TabAdvanced  m_tabAdvanced;
 	TabAbout     m_tabAbout;
-
-	BOOL m_bInitialized;
 	
 	// Generated message map functions
 	virtual BOOL OnInitDialog();

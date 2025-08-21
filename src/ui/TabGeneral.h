@@ -49,6 +49,7 @@ protected:
 	afx_msg void OnNameEditKillFocus();
 	afx_msg void OnStateEditKillFocus();
 	afx_msg void OnDetailsEditKillFocus();
+	void SaveAllProfiles();
 
 	DECLARE_MESSAGE_MAP()
 public:

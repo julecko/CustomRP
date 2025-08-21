@@ -225,7 +225,6 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
     <ClInclude Include="src\pch\pch.h" />
     <ClInclude Include="res\Resource.h" />
     <ClInclude Include="src\ui\TabAbout.h" />
-    <ClInclude Include="src\ui\TabAdvanced.h" />
     <ClInclude Include="src\ui\TabGeneral.h" />
     <ClInclude Include="src\pch\targetver.h" />
     <ClInclude Include="src\util\Config.h" />
@@ -259,7 +258,6 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\ui\TabAbout.cpp" />
-    <ClCompile Include="src\ui\TabAdvanced.cpp" />
     <ClCompile Include="src\ui\TabGeneral.cpp" />
     <ClCompile Include="src\util\Config.cpp" />
     <ClCompile Include="src\util\Logger.cpp" />
@@ -273,6 +271,16 @@ copy /Y "$(ProjectDir)lib\discord_game_sdk.dll" "$(TargetDir)"
     <None Include="res\CustomRP.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\downloads\favicon-1,favicon-2,favicon-3\bitmap4.bmp" />
+    <Image Include="..\..\..\..\Downloads\favicon-1,favicon-2,favicon-3\favicon-1.bmp" />
+    <Image Include="..\..\..\..\Downloads\favicon-1,favicon-2,favicon-3\favicon-9.bmp" />
+    <Image Include="..\..\..\..\downloads\favicon-1,favicon-2,favicon-3\icon1.ico" />
+    <Image Include="..\..\..\..\Downloads\favicon-9.bmp" />
+    <Image Include="..\..\..\..\Downloads\favicon-9.ico" />
+    <Image Include="..\..\..\..\Downloads\favicon-final.bmp" />
+    <Image Include="..\..\..\..\Downloads\favicon-final.ico" />
+    <Image Include="..\..\..\..\Downloads\favicon.ico" />
+    <Image Include="CustomRP.ico" />
     <Image Include="res\CustomRP.ico" />
   </ItemGroup>
   <ItemGroup>
