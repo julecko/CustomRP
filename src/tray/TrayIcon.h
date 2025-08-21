@@ -63,6 +63,7 @@ protected:
 
 private:
     void BuildProfileMenu(CMenu& menu);
+    bool TryInitDiscord(uint64_t clientId);
     void ConnectProfile(const std::string& profileName);
     void DisconnectProfile();
 

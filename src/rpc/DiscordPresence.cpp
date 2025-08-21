@@ -11,15 +11,13 @@ MyDiscordPresence::~MyDiscordPresence() {
     Shutdown();
 }
 
-bool MyDiscordPresence::Initialize(uint64_t clientId) {
+bool MyDiscordPresence::Initialize(uint64_t clientId)
+{
     discord::Core* corePtr{};
     auto result = discord::Core::Create(clientId, DiscordCreateFlags_Default, &corePtr);
-    if (result != discord::Result::Ok || !corePtr)
-        return false;
-
     core.reset(corePtr);
 
-    // Optional: debug log
+
     core->SetLogHook(discord::LogLevel::Debug, [](discord::LogLevel level, const char* msg) {
         OutputDebugStringA(msg);
         OutputDebugStringA("\n");
@@ -27,6 +25,7 @@ bool MyDiscordPresence::Initialize(uint64_t clientId) {
 
     return true;
 }
+
 
 void MyDiscordPresence::UpdatePresence(const std::string& state, const std::string& details) {
     if (!core) return;
@@ -37,7 +36,6 @@ void MyDiscordPresence::UpdatePresence(const std::string& state, const std::stri
     activity.SetType(discord::ActivityType::Playing);
 
     core->ActivityManager().UpdateActivity(activity, [](discord::Result result) {
-        // optional: handle success/failure
         });
 }
 

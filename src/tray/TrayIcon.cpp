@@ -133,7 +133,6 @@ void CTrayWnd::OnTrayProfileAction(UINT nID)
     }
 }
 
-
 void CTrayWnd::OnTrayExit() { PostQuitMessage(0); }
 
 void CTrayWnd::OnTraySettings()
@@ -186,9 +185,9 @@ void CTrayWnd::OnTrayProfileSelected(UINT nID)
                 return;
             }
 
-            if (m_discord->Initialize(discordClientId))
+            if(!TryInitDiscord(discordClientId))
             {
-                m_discordThread = std::thread([this]() { m_discord->RunCallbacks(); });
+                return; // Stop connecting if Discord failed
             }
         }
         else
@@ -206,6 +205,21 @@ void CTrayWnd::OnTrayProfileSelected(UINT nID)
         DisconnectProfile();
     }
 }
+
+bool CTrayWnd::TryInitDiscord(uint64_t clientId)
+{
+    if (!m_discord->Initialize(clientId))
+    {
+        m_discord.reset();
+        AfxMessageBox(_T("Discord initialization failed. Invalid client ID or Discord not running."));
+        return false;
+    }
+
+    m_discordThread = std::thread([this]() { m_discord->RunCallbacks(); });
+    
+    return true;
+}
+
 
 void CTrayWnd::ConnectProfile(const std::string& profileName)
 {
@@ -232,9 +246,9 @@ void CTrayWnd::ConnectProfile(const std::string& profileName)
             return;
         }
 
-        if (m_discord->Initialize(discordClientId))
+        if(!TryInitDiscord(discordClientId))
         {
-            m_discordThread = std::thread([this]() { m_discord->RunCallbacks(); });
+            return; // Stop connecting if Discord failed
         }
     }
 
